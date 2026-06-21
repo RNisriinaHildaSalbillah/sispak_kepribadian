@@ -1,0 +1,476 @@
+/* ==========================================================================
+   STYLE SHEET UNTUK SISTEM PAKAR KEPRIBADIAN & REKOMENDASI BIDANG KERJA
+   ========================================================================== */
+
+/* Impor Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
+
+/* Override Tema Global Streamlit via CSS Variables */
+:root {
+    --primary-color: #EC407A !important;
+    --background-color: #F8FAFC !important;
+    --secondary-background-color: #F1F5F9 !important;
+    --text-color: #0F172A !important;
+    --font: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* Style Dasar Halaman */
+html, body, [data-testid="stAppViewContainer"] {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    background: linear-gradient(135deg, #EFF6FF 0%, #FFF1F2 100%) !important;
+    color: #0F172A !important;
+}
+
+[data-testid="stHeader"] {
+    background: transparent !important;
+}
+
+/* Memastikan Semua Teks Memiliki Kontras Tinggi & Warna Terlihat Jelas */
+p, span, label, li, ol, ul, table, td, th, 
+[data-testid="stMarkdownContainer"] p, 
+[data-testid="stMarkdownContainer"] span,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] ol,
+[data-testid="stMarkdownContainer"] ul,
+.stCheckbox p,
+.stCheckbox span,
+.stCheckbox label,
+.stRadio p,
+.stRadio span,
+.stRadio label,
+.stExpander details summary,
+.stExpander details p,
+.stExpander details span {
+    color: #0F172A !important;
+}
+
+/* Heading / Judul */
+h1, h2, h3, h4, h5, h6,
+[data-testid="stMarkdownContainer"] h1,
+[data-testid="stMarkdownContainer"] h2,
+[data-testid="stMarkdownContainer"] h3,
+[data-testid="stMarkdownContainer"] h4,
+[data-testid="stMarkdownContainer"] h5,
+[data-testid="stMarkdownContainer"] h6 {
+    color: #0F172A !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700;
+}
+
+/* Kustomisasi Sidebar */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #FDF2F8 0%, #EFF6FF 100%) !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: #1E293B !important;
+    font-weight: 500;
+}
+
+.sidebar-title-container {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(236, 64, 122, 0.15);
+}
+
+.sidebar-title-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0F172A !important;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+}
+
+.sidebar-subtitle-text {
+    font-size: 0.8rem;
+    color: #475569 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+/* Card / Container dengan Efek Glassmorphism yang Rapi dan Bersih */
+.custom-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.custom-card p,
+.custom-card h1,
+.custom-card h2,
+.custom-card h3,
+.custom-card h4,
+.custom-card h5,
+.custom-card h6,
+.custom-card li,
+.custom-card span {
+    color: #0F172A !important;
+}
+
+/* Styling Header Utama */
+.main-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1E88E5 0%, #EC407A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.35;
+}
+
+.subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    color: #475569 !important;
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: 500;
+}
+
+/* Section Header */
+.section-header {
+    font-family: 'Outfit', sans-serif;
+    color: #0F172A !important;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-left: 5px solid #EC407A;
+    padding-left: 12px;
+}
+
+/* Kustomisasi Box Informasi & Peringatan */
+.info-box {
+    background-color: #EFF6FF !important;
+    border-left: 5px solid #3B82F6 !important;
+    padding: 18px;
+    border-radius: 12px;
+    color: #1E3A8A !important;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.info-box b, .info-box strong {
+    color: #1E3A8A !important;
+}
+
+.warning-box {
+    background-color: #FFF1F2 !important;
+    border-left: 5px solid #F43F5E !important;
+    padding: 18px;
+    border-radius: 12px;
+    color: #9F1239 !important;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border: 1px solid rgba(244, 63, 94, 0.1);
+}
+
+.warning-box b, .warning-box strong {
+    color: #9F1239 !important;
+}
+
+/* Kustomisasi Tombol (Button) */
+div.stButton > button {
+    background: linear-gradient(90deg, #EC407A 0%, #42A5F5 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    padding: 12px 28px !important;
+    border-radius: 30px !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(236, 64, 122, 0.25) !important;
+    transition: all 0.3s ease !important;
+    width: 100%;
+}
+
+div.stButton > button:hover {
+    background: linear-gradient(90deg, #D81B60 0%, #1E88E5 100%) !important;
+    box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+div.stButton > button:active {
+    transform: translateY(0px) !important;
+}
+
+div.stButton > button p,
+div.stButton > button span {
+    color: #FFFFFF !important;
+}
+
+/* Kustomisasi Form Submit Button Streamlit */
+div.stFormSubmitButton > button {
+    background: linear-gradient(90deg, #EC407A 0%, #42A5F5 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    padding: 12px 28px !important;
+    border-radius: 30px !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(236, 64, 122, 0.25) !important;
+    transition: all 0.3s ease !important;
+    width: auto !important;
+    min-width: 250px;
+    margin: 0 auto;
+    display: block;
+}
+
+div.stFormSubmitButton > button:hover {
+    background: linear-gradient(90deg, #D81B60 0%, #1E88E5 100%) !important;
+    box-shadow: 0 6px 20px rgba(236, 64, 122, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+div.stFormSubmitButton > button p,
+div.stFormSubmitButton > button span {
+    color: #FFFFFF !important;
+}
+
+/* Kustomisasi Checkbox (Gejala) - Bersih Tanpa Banyak Box */
+.stCheckbox {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+    border-radius: 0px !important;
+    padding: 14px 10px !important;
+    margin-bottom: 0px !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+    width: 100%;
+}
+
+.stCheckbox:hover {
+    background: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.stCheckbox label p {
+    color: #334155 !important;
+    font-weight: 500 !important;
+    font-size: 1.02rem !important;
+    line-height: 1.5 !important;
+}
+
+/* Modifikasi Kotak Checkbox menggunakan accent-color agar rapi dan tidak hitam */
+div[data-testid="stCheckbox"] input[type="checkbox"] {
+    accent-color: #EC407A !important;
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer !important;
+}
+
+/* Progress Bar Label */
+.progress-label-container {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+.progress-label-container span {
+    color: #1E293B !important;
+}
+
+/* Personality Badges */
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white !important;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-sanguinis { background-color: #EC407A !important; }
+.badge-melankolis { background-color: #1E88E5 !important; }
+.badge-plegmatis { background-color: #0D9488 !important; }
+.badge-koleris { background-color: #F97316 !important; }
+
+/* Kustomisasi Expander */
+.stExpander {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    margin-bottom: 15px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01) !important;
+}
+
+.stExpander summary {
+    font-weight: 600 !important;
+    color: #0F172A !important;
+}
+
+.stExpander summary:hover {
+    color: #EC407A !important;
+}
+
+.stMarkdown ul, .stMarkdown ol, .stMarkdown li {
+    color: #0F172A !important;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* Tabel DataFrame Custom Style */
+.stDataFrame {
+    background: #FFFFFF !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Input Widget Labels */
+[data-testid="stWidgetLabel"] p {
+    color: #0F172A !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
+
+/* Styling logo lingkaran di sidebar dengan animasi pulse */
+.sidebar-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #EC407A 0%, #42A5F5 100%);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    font-family: "Outfit", sans-serif;
+    box-shadow: 0 4px 10px rgba(236, 64, 122, 0.2);
+    animation: logoPulse 3s infinite ease-in-out;
+}
+
+@keyframes logoPulse {
+    0% {
+        box-shadow: 0 4px 10px rgba(236, 64, 122, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 4px 15px rgba(236, 64, 122, 0.45);
+        transform: scale(1.06);
+    }
+    100% {
+        box-shadow: 0 4px 10px rgba(236, 64, 122, 0.2);
+        transform: scale(1);
+    }
+}
+
+/* ==========================================
+   KUSTOMISASI NAVBAR RADIO DI SIDEBAR
+   ========================================== */
+
+/* Sembunyikan label bawaan "Navigasi Halaman:" */
+[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-testid="stWidgetLabel"] {
+    display: none !important;
+}
+
+/* Atur wadah utama radio grup */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding-top: 10px !important;
+}
+
+/* Sembunyikan bulatan radio input default */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label > div:first-child {
+    display: none !important;
+}
+
+/* Ubah label pilihan menjadi kartu tombol navigasi premium */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label {
+    background: rgba(255, 255, 255, 0.45) !important;
+    border: 1px solid rgba(15, 23, 42, 0.05) !important;
+    border-radius: 12px !important;
+    padding: 12px 18px !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.01) !important;
+}
+
+/* Efek Hover: Bergeser sedikit ke kanan dan perbatasan bersinar */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label:hover {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(236, 64, 122, 0.3) !important;
+    transform: translateX(6px) !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Tombol Aktif / Terpilih (menggunakan selector atribut data-checked & pseudo-class :has) */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label[data-checked="true"],
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) {
+    background: linear-gradient(135deg, #EC407A 0%, #42A5F5 100%) !important;
+    border: none !important;
+    box-shadow: 0 6px 16px rgba(236, 64, 122, 0.25) !important;
+}
+
+/* Gaya teks saat tombol aktif */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label[data-checked="true"] p,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label[data-checked="true"] span,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label[data-checked="true"] div[data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) p,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) span,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) div[data-testid="stMarkdownContainer"] p {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
+
+/* Gaya teks tombol biasa */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label p,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label span,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label div[data-testid="stMarkdownContainer"] p {
+    color: #334155 !important;
+    font-weight: 550 !important;
+    font-size: 0.95rem !important;
+    transition: color 0.3s ease !important;
+}
+
+/* Warna teks biasa saat hover */
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label:hover p,
+[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] label:hover span {
+    color: #0F172A !important;
+}
