@@ -94,11 +94,13 @@ ATURAN_INFERENSI = {
     "R12": {"facts": ["G18", "G19", "G27", "G30"], "target": "K4", "target_name": "Koleris"},
 }
 
-# 3. Data Kepribadian & Generalisasi Rekomendasi Bidang Kerja
+# # 3. Data Kepribadian & Generalisasi Rekomendasi Bidang Kerja
 DETAIL_KEPRIBADIAN = {
     "K1": {
         "nama": "Sanguinis (The Popular)",
         "badge_class": "badge-sanguinis",
+        "color": "#FFB3BA",
+        "text_color": "#D8829D",
         "deskripsi": "Tipe kepribadian Sanguinis dikenal sebagai pribadi yang optimis, ceria, penuh energi, berjiwa sosial tinggi, dan senang berkomunikasi. Anda sangat pandai mencairkan suasana, menyukai variasi, dan beradaptasi dalam lingkungan sosial yang dinamis.",
         "karakteristik": "Ekspresif, komunikatif, antusias, bersahabat, namun kadang mudah terbawa suasana atau kurang disiplin pada detail.",
         "rekomendasi": [
@@ -113,6 +115,8 @@ DETAIL_KEPRIBADIAN = {
     "K2": {
         "nama": "Melankolis (The Perfect)",
         "badge_class": "badge-melankolis",
+        "color": "#BAE1FF",
+        "text_color": "#6C8EBF",
         "deskripsi": "Tipe kepribadian Melankolis dikenal sangat analitis, perfeksionis, teratur, disiplin, dan teliti. Anda menyukai segala sesuatu berjalan sesuai rencana, pandai memecahkan masalah kompleks berbasis data, dan memiliki standar kualitas yang tinggi.",
         "karakteristik": "Teratur, detail, analitis, artistik, sensitif, namun kadang cenderung cemas berlebihan atau terlalu kritis terhadap diri sendiri.",
         "rekomendasi": [
@@ -127,6 +131,8 @@ DETAIL_KEPRIBADIAN = {
     "K3": {
         "nama": "Plegmatis (The Peaceful)",
         "badge_class": "badge-plegmatis",
+        "color": "#B5EAD7",
+        "text_color": "#559A84",
         "deskripsi": "Tipe kepribadian Plegmatis dikenal tenang, sabar, loyal, damai, dan menghindari konflik. Anda adalah pendengar yang sangat baik, kooperatif dalam tim, konsisten dalam bekerja, dan mampu menjaga keharmonisan kelompok.",
         "karakteristik": "Tenang, sabar, diplomatis, pendengar baik, stabil, namun terkadang pasif atau kurang berani mengambil risiko besar.",
         "rekomendasi": [
@@ -141,6 +147,8 @@ DETAIL_KEPRIBADIAN = {
     "K4": {
         "nama": "Koleris (The Powerful)",
         "badge_class": "badge-koleris",
+        "color": "#FFDAC1",
+        "text_color": "#C68E6C",
         "deskripsi": "Tipe kepribadian Koleris dikenal sebagai pemimpin alami yang tegas, visioner, fokus pada hasil akhir, mandiri, dan menyukai tantangan baru. Anda cepat mengambil tindakan, percaya diri tinggi, dan bersemangat ketika bersaing.",
         "karakteristik": "Tegas, visioner, pemimpin, kompetitif, fokus hasil, namun kadang tidak sabaran atau kurang sensitif terhadap emosi orang lain.",
         "rekomendasi": [
@@ -248,9 +256,12 @@ with st.sidebar:
     menu_options = [
         "Beranda",
         "Tes Kepribadian",
-        "Basis Pengetahuan",
-        "Tentang Aplikasi & Metode"
+        "Tentang Aplikasi"
     ]
+    
+    # Sanitasi session state jika halaman sebelumnya ("Basis Pengetahuan") sudah tidak ada
+    if st.session_state.current_page not in menu_options:
+        st.session_state.current_page = "Tentang Aplikasi"
     
     # Radio button yang sinkron dengan session state (tanpa key agar tidak write-lock saat programmatic redirect)
     pilihan_navigasi = st.radio(
@@ -290,8 +301,8 @@ if st.session_state.current_page == "Beranda":
     
     with col1:
         st.markdown(f"""
-        <div class='custom-card' style='border-left: 5px solid #EC407A;'>
-            <h4 style='color: #EC407A; margin: 0 0 10px 0;'>Sanguinis (Populer)</h4>
+        <div class='custom-card' style='border-left: 5px solid #FFB3BA;'>
+            <h4 style='color: #D8829D; margin: 0 0 10px 0;'>Sanguinis (Populer)</h4>
             <p style='font-size: 0.95rem; line-height: 1.5;'>Individu yang penuh semangat, optimis, senang berbicara, dan mudah bergaul. Mereka senang menjadi pusat perhatian dan membawa kegembiraan di lingkungan kerja.</p>
             <span class='badge badge-sanguinis'>Ekspresif</span>
             <span class='badge badge-sanguinis'>Sosial</span>
@@ -300,8 +311,8 @@ if st.session_state.current_page == "Beranda":
         """, unsafe_allow_html=True)
         
         st.markdown(f"""
-        <div class='custom-card' style='border-left: 5px solid #0D9488;'>
-            <h4 style='color: #0D9488; margin: 0 0 10px 0;'>Plegmatis (Damai)</h4>
+        <div class='custom-card' style='border-left: 5px solid #B5EAD7;'>
+            <h4 style='color: #559A84; margin: 0 0 10px 0;'>Plegmatis (Damai)</h4>
             <p style='font-size: 0.95rem; line-height: 1.5;'>Individu yang tenang, sabar, cinta damai, dan menghindari konflik. Mereka adalah mediator yang hebat, loyal, dan menyukai stabilitas serta kenyamanan kerja.</p>
             <span class='badge badge-plegmatis'>Sabar</span>
             <span class='badge badge-plegmatis'>Tenang</span>
@@ -311,8 +322,8 @@ if st.session_state.current_page == "Beranda":
 
     with col2:
         st.markdown(f"""
-        <div class='custom-card' style='border-left: 5px solid #1E88E5;'>
-            <h4 style='color: #1E88E5; margin: 0 0 10px 0;'>Melankolis (Sempurna)</h4>
+        <div class='custom-card' style='border-left: 5px solid #BAE1FF;'>
+            <h4 style='color: #6C8EBF; margin: 0 0 10px 0;'>Melankolis (Sempurna)</h4>
             <p style='font-size: 0.95rem; line-height: 1.5;'>Individu yang mendalam, analitis, perfeksionis, dan teratur. Mereka sangat menyukai detail, akurasi, dan perencanaan matang sebelum mengambil keputusan.</p>
             <span class='badge badge-melankolis'>Analitis</span>
             <span class='badge badge-melankolis'>Perfeksionis</span>
@@ -321,8 +332,8 @@ if st.session_state.current_page == "Beranda":
         """, unsafe_allow_html=True)
         
         st.markdown(f"""
-        <div class='custom-card' style='border-left: 5px solid #F97316;'>
-            <h4 style='color: #F97316; margin: 0 0 10px 0;'>Koleris (Kuat)</h4>
+        <div class='custom-card' style='border-left: 5px solid #FFDAC1;'>
+            <h4 style='color: #C68E6C; margin: 0 0 10px 0;'>Koleris (Kuat)</h4>
             <p style='font-size: 0.95rem; line-height: 1.5;'>Individu yang tegas, berorientasi pada target, berani, dan suka memimpin. Mereka menyukai tantangan baru, cepat mengambil tindakan, dan sangat kompetitif.</p>
             <span class='badge badge-koleris'>Tegas</span>
             <span class='badge badge-koleris'>Pemimpin</span>
@@ -382,9 +393,9 @@ elif st.session_state.current_page == "Tes Kepribadian":
             for p_id in dominant_list:
                 info = DETAIL_KEPRIBADIAN[p_id]
                 st.markdown(f"""
-                <div class='custom-card' style='border-top: 4px solid #EC407A;'>
+                <div class='custom-card' style='border-top: 4px solid {info["color"]};'>
                     <h2 style='margin: 0; color: #1E3A8A;'>Tipe Kepribadian: {info["nama"]}</h2>
-                    <p style='margin: 5px 0 0 0; font-size: 1.1rem; color: #E91E63; font-weight: bold;'>
+                    <p style='margin: 5px 0 0 0; font-size: 1.1rem; color: {info["text_color"]}; font-weight: bold;'>
                         Persentase Keakuratan Aturan: {max_score}%
                     </p>
                     <hr style='border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 20px 0;'>
@@ -397,7 +408,7 @@ elif st.session_state.current_page == "Tes Kepribadian":
                 
                 # Rekomendasi Bidang Kerja untuk kepribadian dominan
                 st.markdown(f"""
-                <div class='custom-card' style='background-color: rgba(255, 255, 255, 0.95); border-left: 6px solid #42A5F5;'>
+                <div class='custom-card' style='background-color: rgba(255, 255, 255, 0.95); border-left: 6px solid {info["color"]};'>
                     <h3 style='color: #1E3A8A; margin-top: 0; margin-bottom: 15px;'>Rekomendasi Bidang Kerja / Karier:</h3>
                     <p style='color: #5E6E82; font-size: 0.95rem; margin-bottom: 20px;'>
                         Bidang karier berikut direkomendasikan berdasarkan kecocokan alami tipe kepribadian {info["nama"]} demi mengoptimalkan performa dan kenyamanan profesional:
@@ -425,7 +436,7 @@ elif st.session_state.current_page == "Tes Kepribadian":
             st.markdown(f"""
             <div class='progress-label-container'>
                 <span>Sanguinis (K1)</span>
-                <span style='color: #EC407A;'>{scores["K1"]}%</span>
+                <span style='color: #D8829D;'>{scores["K1"]}%</span>
             </div>
             """, unsafe_allow_html=True)
             st.progress(val_s)
@@ -435,7 +446,7 @@ elif st.session_state.current_page == "Tes Kepribadian":
             st.markdown(f"""
             <div class='progress-label-container'>
                 <span>Plegmatis (K3)</span>
-                <span style='color: #0D9488;'>{scores["K3"]}%</span>
+                <span style='color: #559A84;'>{scores["K3"]}%</span>
             </div>
             """, unsafe_allow_html=True)
             st.progress(val_p)
@@ -446,7 +457,7 @@ elif st.session_state.current_page == "Tes Kepribadian":
             st.markdown(f"""
             <div class='progress-label-container'>
                 <span>Melankolis (K2)</span>
-                <span style='color: #1E88E5;'>{scores["K2"]}%</span>
+                <span style='color: #6C8EBF;'>{scores["K2"]}%</span>
             </div>
             """, unsafe_allow_html=True)
             st.progress(val_m)
@@ -456,7 +467,7 @@ elif st.session_state.current_page == "Tes Kepribadian":
             st.markdown(f"""
             <div class='progress-label-container'>
                 <span>Koleris (K4)</span>
-                <span style='color: #F97316;'>{scores["K4"]}%</span>
+                <span style='color: #C68E6C;'>{scores["K4"]}%</span>
             </div>
             """, unsafe_allow_html=True)
             st.progress(val_k)
@@ -527,10 +538,10 @@ elif st.session_state.current_page == "Tes Kepribadian":
         
         # Konfigurasi warna aksen dinamis per langkah untuk mendukung kecocokan visual tipe kepribadian
         step_colors = {
-            1: {"color": "#EC407A", "rgba": "rgba(236, 64, 122, 0.05)", "rgba_shadow": "rgba(236, 64, 122, 0.08)"}, # Sanguinis - Pink
-            2: {"color": "#1E88E5", "rgba": "rgba(30, 136, 229, 0.05)", "rgba_shadow": "rgba(30, 136, 229, 0.08)"}, # Melankolis - Blue
-            3: {"color": "#0D9488", "rgba": "rgba(13, 148, 136, 0.05)", "rgba_shadow": "rgba(13, 148, 136, 0.08)"}, # Plegmatis - Teal
-            4: {"color": "#F97316", "rgba": "rgba(249, 115, 22, 0.05)", "rgba_shadow": "rgba(249, 115, 22, 0.08)"}  # Koleris - Orange
+            1: {"color": "#FFB3BA", "text_color": "#1E293B", "rgba": "#FFF0F2", "rgba_shadow": "rgba(255, 179, 186, 0.18)"}, # Sanguinis - Pink
+            2: {"color": "#BAE1FF", "text_color": "#1E293B", "rgba": "#F0F8FF", "rgba_shadow": "rgba(186, 225, 255, 0.18)"}, # Melankolis - Blue
+            3: {"color": "#B5EAD7", "text_color": "#1E293B", "rgba": "#EAFDF5", "rgba_shadow": "rgba(181, 234, 215, 0.18)"}, # Plegmatis - Teal
+            4: {"color": "#FFDAC1", "text_color": "#1E293B", "rgba": "#FFFBF0", "rgba_shadow": "rgba(255, 218, 193, 0.18)"}  # Koleris - Orange
         }
         sc = step_colors[st.session_state.test_step]
 
@@ -545,12 +556,14 @@ elif st.session_state.current_page == "Tes Kepribadian":
         /* Baris Checkbox tercentang */
         .stCheckbox:has(input:checked) {{
             background: {sc["rgba"]} !important;
-            border-bottom-color: {sc["color"]} !important;
+            border-color: #1E293B !important;
+            box-shadow: 4px 4px 0px {sc["color"]} !important;
+            transform: translate(-2px, -2px) !important;
         }}
         
         .stCheckbox:has(input:checked) label p {{
-            color: {sc["color"]} !important;
-            font-weight: 600 !important;
+            color: #1E293B !important;
+            font-weight: 700 !important;
         }}
         </style>
         """, unsafe_allow_html=True)
@@ -622,54 +635,12 @@ elif st.session_state.current_page == "Tes Kepribadian":
                         st.rerun()
 
 # ==========================================
-# HALAMAN 3: BASIS PENGETAHUAN
+# HALAMAN 3: TENTANG APLIKASI & BASIS PENGETAHUAN
 # ==========================================
 
-elif st.session_state.current_page == "Basis Pengetahuan":
-    st.markdown("<h1 class='main-title'>Basis Pengetahuan Sistem Pakar</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='subtitle'>Basis pengetahuan berupa fakta dan aturan (rule) formal yang diimplementasikan dari jurnal penelitian.</p>", unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class='info-box'>
-        <b>Informasi Jurnal Acuan:</b><br>
-        Seluruh kode gejala dan pemetaan relasi aturan (rules) di bawah ini diadopsi secara presisi dari jurnal: 
-        <i>"Sistem Pakar Untuk Menentukan Departemen Sesuai Kepribadian Calon Karyawan dengan Menggunakan Metode Forward Chaining"</i> 
-        (Lely Panca Andriyanto, Meidy Fajar Wahyu).
-    </div>
-    """, unsafe_allow_html=True)
-    
-    tab_gejala, tab_aturan = st.tabs(["Daftar Gejala (Fakta)", "Aturan Inferensi (Rules)"])
-    
-    with tab_gejala:
-        st.markdown("<div class='section-header'>Daftar Gejala & Karakteristik Psikologis</div>", unsafe_allow_html=True)
-        st.markdown("Berikut adalah 29 gejala kepribadian yang digunakan sebagai parameter kuesioner:")
-        
-        gejala_data = [{"Kode Gejala": k, "Ciri-Ciri Karakteristik / Gejala": v} for k, v in FAKTA_GEJALA.items()]
-        df_gejala = pd.DataFrame(gejala_data)
-        st.dataframe(df_gejala, use_container_width=True, hide_index=True)
-        
-    with tab_aturan:
-        st.markdown("<div class='section-header'>Aturan Inferensi Kepribadian (Rule Base)</div>", unsafe_allow_html=True)
-        st.markdown("Berikut adalah 12 aturan (R1 hingga R12) yang memetakan kombinasi gejala ke tipe kepribadian:")
-        
-        rules_table_data = []
-        for r_id, r_info in ATURAN_INFERENSI.items():
-            kombinasi_gejala = " AND ".join(r_info["facts"])
-            rules_table_data.append({
-                "Kode Rule": r_id,
-                "Logika Aturan (IF - THEN)": f"IF {kombinasi_gejala} THEN {r_info['target']} ({r_info['target_name']})",
-                "Kepribadian Hasil": f"{r_info['target_name']} ({r_info['target']})"
-            })
-        df_rules = pd.DataFrame(rules_table_data)
-        st.dataframe(df_rules, use_container_width=True, hide_index=True)
-
-# ==========================================
-# HALAMAN 4: TENTANG APLIKASI & METODE
-# ==========================================
-
-elif st.session_state.current_page == "Tentang Aplikasi & Metode":
-    st.markdown("<h1 class='main-title'>Tentang Aplikasi & Metode Inferensi</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='subtitle'>Informasi akademis, penjelasan metode penalaran logika, dan detail pengembangan.</p>", unsafe_allow_html=True)
+elif st.session_state.current_page == "Tentang Aplikasi":
+    st.markdown("<h1 class='main-title'>Tentang Aplikasi</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='subtitle'>Informasi akademis, rujukan jurnal penelitian, dan basis pengetahuan sistem pakar.</p>", unsafe_allow_html=True)
     
     # Academic Disclaimer
     st.markdown("""
@@ -685,17 +656,7 @@ elif st.session_state.current_page == "Tentang Aplikasi & Metode":
     </div>
     """, unsafe_allow_html=True)
     
-    # 1. Penjelasan Forward Chaining & Rumus
-    st.markdown("<div class='section-header'>Mekanisme Logika: Forward Chaining</div>", unsafe_allow_html=True)
-    st.markdown("""
-    <div class='custom-card'>
-        <h3 style='color: #1E3A8A; margin-top: 0;'>Apa itu Forward Chaining?</h3>
-        <p><b>Forward Chaining (Penalaran Maju)</b> adalah metode pencarian dalam sistem pakar yang berorientasi pada data (data-driven). Proses inferensi dimulai dari pengumpulan fakta-fakta awal (data input dari kuesioner pengguna) menuju kesimpulan akhir (tipe kepribadian).</p>
-        <p>Secara sederhana, mesin inferensi akan menganalisis fakta yang ada dan mencoba mencocokkannya dengan premis (bagian <i>IF</i>) dari aturan-aturan yang ada di basis pengetahuan. Jika premis terpenuhi, maka aturan tersebut akan aktif dan menghasilkan konklusi (bagian <i>THEN</i>).</p>  
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # 2. Metadata Jurnal
+    # 1. Jurnal Penelitian Rujukan
     st.markdown("<div class='section-header'>Jurnal Penelitian Rujukan</div>", unsafe_allow_html=True)
     st.markdown("""
     <div class='custom-card'>
@@ -720,17 +681,32 @@ elif st.session_state.current_page == "Tentang Aplikasi & Metode":
     </div>
     """, unsafe_allow_html=True)
     
-    # 3. Teknologi Stack
-    st.markdown("<div class='section-header'>Teknologi & Pengembangan</div>", unsafe_allow_html=True)
+    # 2. Basis Pengetahuan Jurnal (Daftar Gejala & Aturan)
+    st.markdown("<div class='section-header'>Basis Pengetahuan Sistem Pakar (Rule Base)</div>", unsafe_allow_html=True)
     st.markdown("""
-    <div class='custom-card'>
-        <p>Aplikasi ini dideploy secara dinamis dengan spesifikasi teknis berikut:</p>
-        <ul style='padding-left: 20px; line-height: 1.7;'>
-            <li><b>Bahasa Pemrograman:</b> Python</li>
-            <li><b>Framework Antarmuka:</b> Streamlit (untuk antarmuka web interaktif yang modern, clean, dan profesional)</li>
-            <li><b>Pengolahan Data:</b> Pandas (untuk menyusun dan menampilkan tabel basis pengetahuan secara modular)</li>
-            <li><b>Manajemen State:</b> <code>st.session_state</code> (tanpa database eksternal untuk portabilitas penuh)</li>
-            <li><b>Pencocokan Logika:</b> Python Set Intersection untuk kalkulasi rules Forward Chaining yang cepat dan efisien.</li>
-        </ul>
+    <div class='info-box'>
+        <b>Basis Pengetahuan Jurnal:</b><br>
+        Seluruh daftar gejala dan aturan inferensi di bawah ini diadopsi secara presisi dari jurnal rujukan untuk memastikan orisinalitas proses logika keputusan.
     </div>
     """, unsafe_allow_html=True)
+    
+    tab_gejala, tab_aturan = st.tabs(["Daftar Gejala (Fakta)", "Aturan Inferensi (Rules)"])
+    
+    with tab_gejala:
+        st.markdown("Berikut adalah 29 gejala kepribadian yang digunakan sebagai parameter kuesioner:")
+        gejala_data = [{"Kode Gejala": k, "Ciri-Ciri Karakteristik / Gejala": v} for k, v in FAKTA_GEJALA.items()]
+        df_gejala = pd.DataFrame(gejala_data)
+        st.dataframe(df_gejala, use_container_width=True, hide_index=True)
+        
+    with tab_aturan:
+        st.markdown("Berikut adalah 12 aturan (R1 hingga R12) yang memetakan kombinasi gejala ke tipe kepribadian:")
+        rules_table_data = []
+        for r_id, r_info in ATURAN_INFERENSI.items():
+            kombinasi_gejala = " AND ".join(r_info["facts"])
+            rules_table_data.append({
+                "Kode Rule": r_id,
+                "Logika Aturan (IF - THEN)": f"IF {kombinasi_gejala} THEN {r_info['target']} ({r_info['target_name']})",
+                "Kepribadian Hasil": f"{r_info['target_name']} ({r_info['target']})"
+            })
+        df_rules = pd.DataFrame(rules_table_data)
+        st.dataframe(df_rules, use_container_width=True, hide_index=True)
